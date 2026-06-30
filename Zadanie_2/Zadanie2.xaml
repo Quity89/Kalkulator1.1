@@ -1,0 +1,87 @@
+﻿<Window x:Class="Zadanie_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Zadanie 2" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Background" Value="#2E8B57"/>
+            <Setter Property="BorderBrush" Value="#006400"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,5"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PrzyciskBorder" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PrzyciskBorder" Property="Background" Value="#20B2AA"/>
+                                <Setter TargetName="PrzyciskBorder" Property="BorderBrush" Value="#008080"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="PrzyciskBorder" Property="Background" Value="#000000"/>
+                                <Setter TargetName="PrzyciskBorder" Property="BorderBrush" Value="#DC143C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="AlternatywnyStyl" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#B22222"/>
+            <Setter Property="BorderBrush" Value="#800000"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#2F4F4F">
+            <Button Content="Góra - Domyślny"/>
+            <Button Content="Góra - Alternatywny" Style="{StaticResource AlternatywnyStyl}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Background" Value="#4682B4"/>
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Background="#708090" MinWidth="150">
+                <Button Content="Lewo - SubSiatkowy"/>
+                <Button Content="Lewo - Alternatywny" Style="{StaticResource AlternatywnyStyl}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#696969">
+                <Button Content="Dół - SubSiatkowy"/>
+                <Button Content="Dół - Alternatywny" Style="{StaticResource AlternatywnyStyl}"/>
+            </StackPanel>
+
+            <Border Grid.Row="0" Grid.Column="1" Background="#DCDCDC" Margin="5" BorderBrush="Gray" BorderThickness="2">
+                <TextBlock Text="Główna zawartość aplikacji" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="DimGray"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
